@@ -36,7 +36,7 @@ export const getGames = async (genre?: string) => {
         }`
     );
     const games = await response.json();
-    return games as Game[];
+    return games.status !== 0 ? (games as Game[]) : [];
 };
 
 export const getSingleGame = async (gameId: number) => {

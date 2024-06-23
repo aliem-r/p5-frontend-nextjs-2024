@@ -13,7 +13,7 @@ export default function Home() {
         >
             <Link href="/">
                 <Image
-                    src="images/free-games-logo.svg"
+                    src="/images/free-games-logo.svg"
                     width={500}
                     height={100}
                     alt="logo"

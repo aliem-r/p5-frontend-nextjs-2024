@@ -38,7 +38,7 @@ export default function GameCategories({
 
     return (
         <ul className={cn("flex flex-col gap-3", className)}>
-            {/* <ListItem categorie={categories[key]} key={key} /> */}
+            <ListItem categorie={"All Games"} categorieKey={""} />
             {Object.keys(categories).map((key) => (
                 <ListItem categorie={categories[key]} categorieKey={key} />
             ))}
