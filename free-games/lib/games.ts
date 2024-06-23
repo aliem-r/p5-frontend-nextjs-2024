@@ -12,8 +12,8 @@ export type GameDetails = Game & {
     description: string;
     game_url: string;
     release_date: string;
-    minimum_requirements: Requirement;
-    img: Image[];
+    minimum_system_requirements: Requirement;
+    screenshots: Image[];
 };
 
 type Requirement = {
@@ -44,5 +44,5 @@ export const getSingleGame = async (gameId: number) => {
         `https://www.freetogame.com/api/game?id=${gameId}`
     );
     const game = await response.json();
-    return game as Game;
+    return game.status !== 0 ? (game as GameDetails) : "";
 };

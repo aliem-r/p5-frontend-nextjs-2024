@@ -87,3 +87,7 @@
 .debug {
     border: 1px solid red;
 }
+
+.custom-shadow-border {
+    box-shadow: 0 0 0 1px;
+}

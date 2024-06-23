@@ -23,12 +23,13 @@ export default function RootLayout({
                     font.className,
                     "min-h-screen max-w-[1240px] m-auto p-6",
                     "flex flex-col flex-1",
-                    "bg-gradient-to-b from-neutral-950 to-[200px]",
+                    "bg-gradient-to-b from-slate-900/60 to-[200px]",
                     "text-balance"
                 )}
             >
                 <Header />
                 {children}
+                <div className="min-h-10"></div>
             </body>
         </html>
     );
