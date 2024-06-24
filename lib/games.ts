@@ -1,5 +1,3 @@
-import { sleep } from "./utils";
-
 export type Game = {
     id: number;
     title: string;
@@ -32,7 +30,6 @@ type Image = {
 };
 
 export const getGames = async (genre?: string) => {
-    await sleep(1500);
     const response = await fetch(
         `https://www.freetogame.com/api/games?platform=pc&sort-by=release-date ${
             genre ? `&category=${genre}` : ""
@@ -48,6 +45,15 @@ export const getSingleGame = async (gameId: number) => {
     );
     const game = await response.json();
     return response.status === 200 ? (game as GameDetails) : "";
+};
 
-    return game as GameDetails;
+export const getRandomGame = async () => {
+    const response = await fetch(
+        `https://www.freetogame.com/api/games?platform=pc&sort-by=release-date`
+    );
+    const games = await response.json();
+
+    const randomGameId = Math.floor(Math.random() * (games[0].id - 1) + 1);
+    const randomGame = await getSingleGame(randomGameId);
+    return response.status === 200 ? (randomGame as GameDetails) : "";
 };

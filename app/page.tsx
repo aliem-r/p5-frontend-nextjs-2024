@@ -30,7 +30,7 @@ export default function Home() {
                     All games <Gamepad width={20} className="ml-3" />
                 </Link>
                 <Link
-                    href={"/game"}
+                    href={"/game/random"}
                     className={cn(
                         buttonVariants({ variant: "outline" }),
                         "outline-btn"

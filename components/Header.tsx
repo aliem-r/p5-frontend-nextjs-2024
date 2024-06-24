@@ -36,7 +36,7 @@ export default function Header() {
                             All games <Gamepad width={20} className="ml-3" />
                         </Link>
                         <Link
-                            href={"/game"}
+                            href={"/game/random"}
                             className={cn(
                                 buttonVariants({ variant: "outline" }),
                                 "bg-transparent border-white border-opacity-20 hover:bg-white hover:bg-opacity-5 hover:border-opacity-40"
