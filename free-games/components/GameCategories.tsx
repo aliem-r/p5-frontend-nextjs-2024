@@ -1,7 +1,7 @@
+"use client";
 import { cn } from "@/lib/utils";
-import { Sidebar } from "lucide-react";
-import { Separator } from "./ui/separator";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 type categoriesProps = {
     className?: string;
@@ -11,6 +11,8 @@ export default function GameCategories({
     className,
     categories,
 }: categoriesProps) {
+    const currentPath = usePathname();
+
     const ListItem = ({
         categorie,
         categorieKey,
@@ -18,6 +20,8 @@ export default function GameCategories({
         categorie: string;
         categorieKey: string;
     }) => {
+        const path = categorieKey ? `/games/${categorieKey}` : "/games";
+        console.log("Path", path, "currentPath", currentPath);
         return (
             <li categorieKey={categorieKey}>
                 <Link
@@ -26,9 +30,11 @@ export default function GameCategories({
                         "bg-zinc-900 bg-opacity-30 line-clamp-1",
                         "p-1 px-3 rounded-md ",
                         "hover:bg-zinc-900 hover:outline outline-1 outline-zinc-700",
-                        "text-base uppercase"
+                        "text-base uppercase",
+                        currentPath === path &&
+                            "bg-zinc-900 outline outline-zinc-500"
                     )}
-                    href={`/games/${categorieKey}`}
+                    href={path}
                 >
                     {categorie}
                 </Link>

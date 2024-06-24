@@ -17,6 +17,7 @@ type GameCardProps = {
 
 export default async function GameCard({ className, gameId }: GameCardProps) {
     const game = await getSingleGame(gameId);
+
     return (
         <Card className={cn("overflow-hidden border-0", className)}>
             <CardHeader className="p-0">

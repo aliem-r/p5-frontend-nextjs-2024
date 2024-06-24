@@ -1,4 +1,4 @@
-import GameCategoriesSideBar from "@/components/GameCategoriesSideBar";
+import GameCards from "@/components/GameCards";
 import { getGames } from "@/lib/games";
 
 type PageProps = {
@@ -11,5 +11,5 @@ export default async function Page({ params }: PageProps) {
 
     const games = await getGames(genre);
 
-    return <GameCategoriesSideBar games={games} />;
+    return <GameCards games={games} />;
 }

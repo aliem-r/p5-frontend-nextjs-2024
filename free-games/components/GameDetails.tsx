@@ -7,8 +7,10 @@ import {
 } from "@/components/ui/carousel";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import type { GameDetails } from "@/lib/games";
-import { cn } from "@/lib/utils";
+import { cn, imageExists } from "@/lib/utils";
 import { Separator } from "@radix-ui/react-separator";
+import Image from "next/image";
+import { AspectRatio } from "./ui/aspect-ratio";
 
 type GameProps = {
     game: GameDetails;
@@ -37,15 +39,25 @@ export default function GameDetails({ game }: GameProps) {
                 className="w-full mt-6"
             >
                 <CarouselContent>
-                    {game.screenshots.map((screenshots, index) => (
-                        <CarouselItem>
-                            <img
-                                className="rounded-lg"
-                                src={screenshots.image}
-                                alt={game.title}
-                            />
-                        </CarouselItem>
-                    ))}
+                    {game.screenshots.map(async (screenshots, index) => {
+                        const validImage = await imageExists(screenshots.image);
+                        if (!validImage) return;
+                        return (
+                            <CarouselItem>
+                                <AspectRatio
+                                    ratio={16 / 9}
+                                    className="rounded-lg overflow-hidden"
+                                >
+                                    <Image
+                                        src={screenshots.image}
+                                        alt={game.title}
+                                        width={800}
+                                        height={700}
+                                    />
+                                </AspectRatio>
+                            </CarouselItem>
+                        );
+                    })}
                 </CarouselContent>
                 <CarouselPrevious className="left-[10px] w-7 h-7" />
                 <CarouselNext className="right-[10px] w-7 h-7" />

@@ -44,5 +44,5 @@ export const getSingleGame = async (gameId: number) => {
         `https://www.freetogame.com/api/game?id=${gameId}`
     );
     const game = await response.json();
-    return game.status !== 0 ? (game as GameDetails) : "";
+    return game as GameDetails;
 };

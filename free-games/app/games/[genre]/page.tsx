@@ -1,4 +1,4 @@
-import GameCategoriesSideBar from "@/components/GameCategoriesSideBar";
+import GameCards from "@/components/GameCards";
 import { getGames } from "@/lib/games";
 import { notFound } from "next/navigation";
 
@@ -14,5 +14,5 @@ export default async function Page({ params }: PageProps) {
 
     if (!games.length) notFound();
 
-    return <GameCategoriesSideBar games={games} />;
+    return <GameCards games={games} />;
 }
