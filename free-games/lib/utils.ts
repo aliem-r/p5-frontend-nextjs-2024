@@ -12,3 +12,8 @@ export async function imageExists(imageUrl: string) {
     });
     return response.status === 200;
 }
+
+export const sleep = (ms: number) =>
+    new Promise((resolve) => setTimeout(resolve, ms));
+
+export const range = (n: number) => Array.from({ length: n }, (_, i) => i + 1);

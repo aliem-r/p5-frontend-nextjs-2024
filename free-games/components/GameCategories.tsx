@@ -21,9 +21,8 @@ export default function GameCategories({
         categorieKey: string;
     }) => {
         const path = categorieKey ? `/games/${categorieKey}` : "/games";
-        console.log("Path", path, "currentPath", currentPath);
         return (
-            <li categorieKey={categorieKey}>
+            <li>
                 <Link
                     className={cn(
                         "transition-all ease-in-out",
@@ -45,8 +44,12 @@ export default function GameCategories({
     return (
         <ul className={cn("flex flex-col gap-3", className)}>
             <ListItem categorie={"All Games"} categorieKey={""} />
-            {Object.keys(categories).map((key) => (
-                <ListItem categorie={categories[key]} categorieKey={key} />
+            {Object.keys(categories).map((key, i) => (
+                <ListItem
+                    key={i}
+                    categorie={categories[key]}
+                    categorieKey={key}
+                />
             ))}
         </ul>
     );

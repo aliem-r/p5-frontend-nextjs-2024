@@ -4,29 +4,31 @@ import {
     CardFooter,
     CardHeader,
 } from "@/components/ui/card";
-import { getSingleGame } from "@/lib/games";
+import { Game, getSingleGame } from "@/lib/games";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Separator } from "./ui/separator";
+import { AspectRatio } from "./ui/aspect-ratio";
+import { notFound } from "next/navigation";
 
 type GameCardProps = {
     className?: string;
-    gameId: number;
+    game: Game;
 };
 
-export default async function GameCard({ className, gameId }: GameCardProps) {
-    const game = await getSingleGame(gameId);
-
+export default async function GameCard({ className, game }: GameCardProps) {
     return (
         <Card className={cn("overflow-hidden border-0", className)}>
             <CardHeader className="p-0">
-                <Image
-                    src={game.thumbnail}
-                    width={700}
-                    height={700}
-                    alt={game.title}
-                ></Image>
+                <AspectRatio ratio={16 / 9}>
+                    <Image
+                        src={game.thumbnail}
+                        width={700}
+                        height={700}
+                        alt={game.title}
+                    ></Image>
+                </AspectRatio>
             </CardHeader>
             <CardContent className="p-4 pt-6 pb-0">
                 <h2 className="font-medium text-2xl line-clamp-1">

@@ -1,3 +1,5 @@
+import { sleep } from "./utils";
+
 export type Game = {
     id: number;
     title: string;
@@ -30,6 +32,7 @@ type Image = {
 };
 
 export const getGames = async (genre?: string) => {
+    await sleep(1500);
     const response = await fetch(
         `https://www.freetogame.com/api/games?platform=pc&sort-by=release-date ${
             genre ? `&category=${genre}` : ""
@@ -44,7 +47,6 @@ export const getSingleGame = async (gameId: number) => {
         `https://www.freetogame.com/api/game?id=${gameId}`
     );
     const game = await response.json();
-    console.log("XDDDDDDDDDDDDDDD", response.status);
     return response.status === 200 ? (game as GameDetails) : "";
 
     return game as GameDetails;

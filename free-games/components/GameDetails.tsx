@@ -28,8 +28,10 @@ export default function GameDetails({ game }: GameProps) {
         >
             <h2 className="font-medium text-3xl">{game.title}</h2>
             <Separator className="w-full h-[1px] bg-gradient-to-r from-zinc-700" />
-            {game.description.split("\r\n\r\n").map((line) => (
-                <p className="text-sm text-zinc-400">{line}</p>
+            {game.description.split("\r\n\r\n").map((line, i) => (
+                <p key={i} className="text-sm text-zinc-400">
+                    {line}
+                </p>
             ))}
             <Carousel
                 opts={{
@@ -39,11 +41,11 @@ export default function GameDetails({ game }: GameProps) {
                 className="w-full mt-6"
             >
                 <CarouselContent>
-                    {game.screenshots.map(async (screenshots, index) => {
+                    {game.screenshots.map(async (screenshots, i) => {
                         const validImage = await imageExists(screenshots.image);
                         if (!validImage) return;
                         return (
-                            <CarouselItem>
+                            <CarouselItem key={i}>
                                 <AspectRatio
                                     ratio={16 / 9}
                                     className="rounded-lg overflow-hidden"
