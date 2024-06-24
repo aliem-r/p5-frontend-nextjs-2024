@@ -2,6 +2,7 @@
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
 
 type categoriesProps = {
     className?: string;
@@ -44,12 +45,8 @@ export default function GameCategories({
     return (
         <ul className={cn("flex flex-col gap-3", className)}>
             <ListItem categorie={"All Games"} categorieKey={""} />
-            {Object.keys(categories).map((key, i) => (
-                <ListItem
-                    key={i}
-                    categorie={categories[key]}
-                    categorieKey={key}
-                />
+            {Object.keys(categories).map((key) => (
+                <ListItem categorie={categories[key]} categorieKey={key} />
             ))}
         </ul>
     );

@@ -24,8 +24,8 @@ export default async function GameCard({ className, game }: GameCardProps) {
                 <AspectRatio ratio={16 / 9}>
                     <Image
                         src={game.thumbnail}
-                        width={700}
-                        height={700}
+                        width={400}
+                        height={400}
                         alt={game.title}
                     ></Image>
                 </AspectRatio>
