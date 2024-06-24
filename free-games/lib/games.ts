@@ -36,7 +36,7 @@ export const getGames = async (genre?: string) => {
         }`
     );
     const games = await response.json();
-    return games.status !== 0 ? (games as Game[]) : [];
+    return response.status === 200 ? (games as Game[]) : [];
 };
 
 export const getSingleGame = async (gameId: number) => {
@@ -44,5 +44,8 @@ export const getSingleGame = async (gameId: number) => {
         `https://www.freetogame.com/api/game?id=${gameId}`
     );
     const game = await response.json();
+    console.log("XDDDDDDDDDDDDDDD", response.status);
+    return response.status === 200 ? (game as GameDetails) : "";
+
     return game as GameDetails;
 };
